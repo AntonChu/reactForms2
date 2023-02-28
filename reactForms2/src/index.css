@@ -25,6 +25,7 @@ a:hover {
 }
 
 body {
+  color: black;
   margin: 0;
   display: flex;
   place-items: center;
@@ -70,7 +71,7 @@ button:focus-visible {
 }
 .wrapper {
   padding: 30px 40px;
-  background-color: #213547;
+  background-color: #efefef;
 }
 .form {
   display: flex;
@@ -86,6 +87,7 @@ button:focus-visible {
   border-radius: 10px;
 }
 .button {
+  background-color: #b3b3b3;
   align-self: flex-end;
 }
 .history-header {
@@ -97,4 +99,12 @@ button:focus-visible {
   min-height: 100px;
   border: 1px solid gray;
   border-radius: 10px;
+}
+.note {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.operation-block {
+  display: flex;
 }

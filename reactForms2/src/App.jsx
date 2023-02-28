@@ -1,16 +1,19 @@
 import { useState } from "react";
 import "./App.css";
 import RenderHistory from "./components/renderHistory";
-// import submit from "./components/submit";
 
 const CreateForm = () => {
-  const [trainList, setList] = useState([]);
-  console.log(trainList);
+  const [trainingList, setList] = useState([]);
 
   const submit = (event) => {
     event.preventDefault();
-    const obj = { data: event.target[0].value, distance: event.target[0].value };
-    setList(prev => {prev.push(obj)});
+    const obj = { data: event.target[0].value, distance: event.target[1].value };
+    if (trainingList.find(el => el.data === obj.data)) {
+      const change = trainingList.findIndex(el => el.data === obj.data);
+      setList([[...trainingList].filter(el => el.data !== obj.data), '?']);
+    } else {
+      setList([...trainingList, obj].sort((a, b) => Date.parse(b.data.split('.').join(' ')) - Date.parse(a.data.split('.').join(' '))));
+    }
     event.target.reset();
   };
 
@@ -18,7 +21,7 @@ const CreateForm = () => {
     <div className="wrapper">
       <form className="form" onSubmit={submit}>
         <label>
-          <p>Дата (ДД.ММ.ГГ)</p>
+          <p>Дата (ГГГГ.ММ.ДД)</p>
           <input className="data" placeholder="дата..."></input>
         </label>
         <label>
@@ -34,7 +37,7 @@ const CreateForm = () => {
           <p>Действия</p>
         </div>
         <div className="history-container">
-          <RenderHistory trainList={trainList} />
+          <RenderHistory trainingList={trainingList} />
         </div>
       </div>
     </div>
