@@ -1,23 +1,15 @@
-const RenderHistory = (props) => {
-  const close = (event) => {
-    event.preventDefault();
-    console.log(event.target.parentElement.parentElement)
-  }
-
-  // const edit = (event) => {
-
-  // }
+const RenderHistory = ({trainingList, deleteItem, fixItem}) => {
 
   return (
     <>
-      {props.trainingList.map((item) => {
+      {trainingList.map((item) => {
         return (
           <div className="note" key={item.data}>
-            <p>{item.data}</p>
-            <p>{item.distance}</p>
+            <p className="render-date">{item.data}</p>
+            <p className="render-distance">{item.distance}</p>
             <div className="operation-block">
-              <button>edit</button>
-              <button onClick={close}>X</button>
+              <button onClick={fixItem}>edit</button>
+              <button onClick={deleteItem}>X</button>
             </div>
           </div>
         );
